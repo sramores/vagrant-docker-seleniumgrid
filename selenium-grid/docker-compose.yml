@@ -1,0 +1,26 @@
+hub:
+ image: selenium/hub
+ ports:
+  - "4444:4444"
+ environment:
+  - GRID_MAXSESSION=10
+
+firefox:
+ image: selenium/node-firefox-debug
+ ports:
+ - "32700:5900"
+ environment:
+  - NODE_MAX_INSTANCES=5
+  - NODE_MAX_SESSION=5
+ links:
+   - hub
+
+chrome:
+ image: selenium/node-chrome-debug
+ ports:
+ - "32701:5900"
+ environment:
+  - NODE_MAX_INSTANCES=5
+  - NODE_MAX_SESSION=5
+ links:
+   - hub
