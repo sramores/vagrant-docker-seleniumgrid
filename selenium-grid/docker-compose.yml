@@ -1,12 +1,14 @@
 hub:
  image: selenium/hub
+ container_name: hub
  ports:
   - "4444:4444"
  environment:
   - GRID_MAXSESSION=10
 
 firefox:
- image: selenium/node-firefox-debug
+ image: selenium/node-firefox-debug:3.4.0-dysprosium
+ container_name: firefox
  ports:
  - "32700:5900"
  environment:
@@ -16,7 +18,8 @@ firefox:
    - hub
 
 chrome:
- image: selenium/node-chrome-debug
+ image: selenium/node-chrome-debug:3.4.0-dysprosium
+ container_name: chrome
  ports:
  - "32701:5900"
  environment:
