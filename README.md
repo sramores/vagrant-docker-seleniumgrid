@@ -1,4 +1,4 @@
-#Vagrant script for install SeleniumGrid in Docker containers.
+# Vagrant script for install SeleniumGrid in Docker containers.
 
 ## Getting Started
 
