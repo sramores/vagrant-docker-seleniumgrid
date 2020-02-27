@@ -1,29 +1,30 @@
-hub:
- image: selenium/hub
- container_name: hub
- ports:
-  - "4444:4444"
- environment:
-  - GRID_MAXSESSION=10
+version: "2"
+services:
+  hub:
+      container_name: hub
+      image: selenium/hub:3.14.0-arsenic
+      ports:
+        - "4444:4444"
+  firefox:
+      container_name: firefox
+      image: selenium/node-firefox-debug:3.14.0-arsenic
+      volumes:
+        - /dev/shm:/dev/shm
+      depends_on:
+        - hub
+      ports:
+        - "32700:5900"
+      environment:
+        HUB_HOST: hub
 
-firefox:
- image: selenium/node-firefox-debug:3.4.0-dysprosium
- container_name: firefox
- ports:
- - "32700:5900"
- environment:
-  - NODE_MAX_INSTANCES=5
-  - NODE_MAX_SESSION=5
- links:
-   - hub
-
-chrome:
- image: selenium/node-chrome-debug:3.4.0-dysprosium
- container_name: chrome
- ports:
- - "32701:5900"
- environment:
-  - NODE_MAX_INSTANCES=5
-  - NODE_MAX_SESSION=5
- links:
-   - hub
+  chrome:
+      container_name: chrome
+      image: selenium/node-chrome-debug:3.14.0-arsenic
+      volumes:
+        - /dev/shm:/dev/shm 
+      depends_on:
+        - hub
+      ports:
+        - "32701:5900"
+      environment:
+        HUB_HOST: hub

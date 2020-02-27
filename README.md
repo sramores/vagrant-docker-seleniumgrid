@@ -1,14 +1,11 @@
 # Vagrant script for install SeleniumGrid in Docker containers.
 
-## Getting Started
+Vagrant is a tool for building and distributing development environments.
 
-### Prerequisites
+**This version is mounted in a ubuntu vbox.** 
 
-#### Install
+## Install
 
 ```bash
 vagrant plugin install vagrant-docker-compose
 ```
-
-
-----temp
